@@ -1,0 +1,9 @@
+<launch>
+    <arg name="vocabulary" default="/home/hcchou/Project/ORB_SLAM3/Vocabulary/ORBvoc.txt" />
+    <arg name="setting" default="/home/hcchou/Project/ORB_SLAM3/Examples/Monocular/TUM_512.yaml" />
+    <node pkg="ORB_SLAM3" type="Mono" name="Mono" output="screen" args="$(arg vocabulary) $(arg setting)"/>
+
+    <arg name="path" default="/home/hcchou/Project/dataset/SLAM/TUM_VI" />
+    <arg name="bag" default="/dataset-room1_512_16/bag/dataset-room1_512_16.bag" />
+    <node pkg="rosbag" type="play" name="player" output="screen" args="--pause $(arg path)$(arg bag) /cam0/image_raw:=/camera/image_raw"/>
+</launch>
